@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      style="
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div style="display: flex; flex-direction: column">
+        <input
+          type="number"
+          id="celsius"
+          placeholder="Enter temperature in Celsius"
+          style="
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+          "
+        />
+        <button
+          onclick="convert()"
+          style="
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+          "
+        >
+          Convert to Fahrenheit
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let convert = () => {
+        let celsius = parseFloat(document.getElementById("celsius").value);
+        let fahrenheit = (celsius * 9) / 5 + 32;
+        alert(`${celsius}°C is ${fahrenheit}°F`);
+      };
+    </script>
+  </body>
+</html>

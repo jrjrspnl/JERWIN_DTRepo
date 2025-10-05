@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function projectGrade(input) {
+        return input * 0.25;
+      }
+
+      function quizGrade(input) {
+        return input * 0.15;
+      }
+
+      function midtermGrade(input) {
+        return input * 0.25;
+      }
+
+      function finalsGrade(input) {
+        return input * 0.25;
+      }
+
+      function activitiesGrade(input) {
+        return input * 0.1;
+      }
+
+      function calculateGrade(project, quiz, midterm, finals, activities) {
+        let average =
+          projectGrade(project) +
+          quizGrade(quiz) +
+          midtermGrade(midterm) +
+          finalsGrade(finals) +
+          activitiesGrade(activities);
+
+        let remarks;
+        if (average >= 75) {
+          remarks = "Passed";
+        } else {
+          remarks = "Failed";
+        }
+
+        console.log("Average:", average);
+        console.log("Remarks:", remarks);
+      }
+
+      calculateGrade(85, 90, 80, 88, 95);
+    </script>
+  </body>
+</html>
