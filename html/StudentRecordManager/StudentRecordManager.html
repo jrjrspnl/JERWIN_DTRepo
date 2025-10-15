@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Form</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center; height: 100vh">
+      <div
+        style="padding: 40px; border-radius: 12px; width: 80%; max-width: 900px"
+      >
+        <h2
+          style="text-align: center; margin-bottom: 30px; letter-spacing: 0.5px"
+        >
+          Registration Form
+        </h2>
+
+        <div style="display: flex; flex-direction: column; gap: 20px">
+          <div style="display: flex; gap: 30px; flex-wrap: wrap">
+            <div style="flex: 1; min-width: 250px">
+              <label
+                style="display: block; font-weight: 600; margin-bottom: 8px"
+                >First Name:</label
+              >
+              <input
+                type="text"
+                id="firstname"
+                placeholder="Enter first name"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 15px;
+                  border: 1px solid grey;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+
+            <div style="flex: 1; min-width: 250px">
+              <label
+                style="display: block; font-weight: 600; margin-bottom: 8px"
+                >Middle Name:</label
+              >
+              <input
+                type="text"
+                id="middlename"
+                placeholder="Enter middle name"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 15px;
+                  border: 1px solid grey;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+
+            <div style="flex: 1; min-width: 250px">
+              <label
+                style="display: block; font-weight: 600; margin-bottom: 8px"
+                >Last Name:</label
+              >
+              <input
+                type="text"
+                id="lastname"
+                placeholder="Enter last name"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 15px;
+                  border: 1px solid grey;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 30px; flex-wrap: wrap">
+            <div style="flex: 1; min-width: 250px">
+              <label
+                style="display: block; font-weight: 600; margin-bottom: 8px"
+                >Address:</label
+              >
+              <input
+                type="text"
+                id="address"
+                placeholder="Enter address"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 15px;
+                  border: 1px solid grey;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+
+            <div style="flex: 1; min-width: 250px">
+              <label
+                style="display: block; font-weight: 600; margin-bottom: 8px"
+                >Contact Number:</label
+              >
+              <input
+                type="text"
+                id="contact"
+                placeholder="Enter contact number"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 15px;
+                  border: 1px solid grey;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+
+            <div style="flex: 1; min-width: 250px">
+              <label
+                style="display: block; font-weight: 600; margin-bottom: 8px"
+                >Email:</label
+              >
+              <input
+                type="email"
+                id="email"
+                placeholder="example@gmail.com"
+                style="
+                  width: 100%;
+                  padding: 10px;
+                  font-size: 15px;
+                  border: 1px solid grey;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px">
+          <button
+            onclick="registrationApp.handleSubmit()"
+            style="
+              background-color: green;
+              color: white;
+              padding: 12px 40px;
+              border: none;
+              border-radius: 8px;
+              font-size: 16px;
+              cursor: pointer;
+            "
+          >
+            Submit
+          </button>
+        </div>
+
+        <table
+          id="dataTable"
+          style="
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            font-size: 15px;
+          "
+        >
+          <thead style="background-color: #f2f2f2">
+            <tr>
+              <th style="border: 1px solid grey; padding: 10px">First Name</th>
+              <th style="border: 1px solid grey; padding: 10px">Middle Name</th>
+              <th style="border: 1px solid grey; padding: 10px">Last Name</th>
+              <th style="border: 1px solid grey; padding: 10px">Address</th>
+              <th style="border: 1px solid grey; padding: 10px">Contact</th>
+              <th style="border: 1px solid grey; padding: 10px">Email</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      class User {
+        constructor(firstname, middlename, lastname, address, contact, email) {
+          this.firstname = firstname;
+          this.middlename = middlename;
+          this.lastname = lastname;
+          this.address = address;
+          this.contact = contact;
+          this.email = email;
+        }
+
+        toTableRow() {
+          return `
+            <td style="border:1px solid #ccc; padding:10px;">${this.firstname}</td>
+            <td style="border:1px solid #ccc; padding:10px;">${this.middlename}</td>
+            <td style="border:1px solid #ccc; padding:10px;">${this.lastname}</td>
+            <td style="border:1px solid #ccc; padding:10px;">${this.address}</td>
+            <td style="border:1px solid #ccc; padding:10px;">${this.contact}</td>
+            <td style="border:1px solid #ccc; padding:10px;">${this.email}</td>
+          `;
+        }
+      }
+
+      class RegistrationForm {
+        constructor() {
+          this.users = [];
+          this.tableBody = document.querySelector("#dataTable tbody");
+        }
+
+        getFormData() {
+          return {
+            firstname: document.getElementById("firstname").value.trim(),
+            middlename: document.getElementById("middlename").value.trim(),
+            lastname: document.getElementById("lastname").value.trim(),
+            address: document.getElementById("address").value.trim(),
+            contact: document.getElementById("contact").value.trim(),
+            email: document.getElementById("email").value.trim(),
+          };
+        }
+
+        addUser(user) {
+          this.users.push(user);
+          this.renderUser(user);
+        }
+
+        renderUser(user) {
+          const row = document.createElement("tr");
+          row.innerHTML = user.toTableRow();
+          this.tableBody.appendChild(row);
+        }
+
+        clearForm() {
+          document
+            .querySelectorAll("input")
+            .forEach((input) => (input.value = ""));
+        }
+
+        handleSubmit() {
+          const formData = this.getFormData();
+          const user = new User(
+            formData.firstname,
+            formData.middlename,
+            formData.lastname,
+            formData.address,
+            formData.contact,
+            formData.email
+          );
+
+          this.addUser(user);
+          this.clearForm();
+        }
+      }
+      const registrationApp = new RegistrationForm();
+    </script>
+  </body>
+</html>
