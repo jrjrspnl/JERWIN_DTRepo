@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Color Picker</title>
+  </head>
+  <body class="transition-colors duration-300">
+    <div>
+      <!--Change bg-->
+      <div class="flex flex-col gap-5 p-5 w-fit">
+        <div>
+          <h1 class="font-medium mb-2">Pick a Background Color</h1>
+          <select
+            id="bgColorSelect"
+            class="border rounded-sm bg-neutral-100 px-3 py-2 cursor-pointer"
+          >
+            <option value="">Select a color</option>
+            <option value="bg-slate-900">Dark Slate</option>
+            <option value="bg-indigo-600">Indigo</option>
+            <option value="bg-emerald-700">Emerald</option>
+            <option value="bg-amber-500">Amber</option>
+          </select>
+        </div>
+
+        <div>
+          <h1 class="font-medium mb-2">Pick a Paragraph Color</h1>
+          <select
+            id="textColorSelect"
+            class="border rounded-sm bg-neutral-100 px-3 py-2 cursor-pointer"
+          >
+            <option value="">Select a color</option>
+            <option value="text-amber-300">Amber</option>
+            <option value="text-cyan-300">Cyan</option>
+            <option value="text-rose-300">Rose</option>
+            <option value="text-lime-300">Lime</option>
+          </select>
+        </div>
+
+        <!--Change Image-->
+        <div>
+          <h1 class="font-medium mb-2">Pick an Image</h1>
+          <select
+            id="imageSelect"
+            class="border rounded-sm bg-neutral-100 px-3 py-2 cursor-pointer"
+          >
+            <option value="">Select an image</option>
+            <option
+              value="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+            >
+              Mountain
+            </option>
+            <option
+              value="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"
+            >
+              Beach
+            </option>
+            <option
+              value="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800"
+            >
+              Forest
+            </option>
+            <option
+              value="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800"
+            >
+              Night Sky
+            </option>
+          </select>
+        </div>
+      </div>
+      <!--Change Paragraph color text-->
+      <div class="flex items-center justify-center flex-col gap-3 mt-10 p-5">
+        <img
+          id="displayImage"
+          class="w-96 h-64 object-cover rounded-lg shadow-lg mb-5 hidden transition-opacity duration-300"
+          alt="Selected image"
+        />
+        <p
+          id="quoteText"
+          class="text-black text-5xl font-semibold flex flex-col items-center transition-colors duration-300"
+        >
+          When the student is ready, the teacher will appear.
+          <br />
+          <span class="text-lg self-end">~ Lao Tzu</span>
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const bgColorSelect = document.getElementById("bgColorSelect");
+      const textColorSelect = document.getElementById("textColorSelect");
+      const imageSelect = document.getElementById("imageSelect");
+      const body = document.body;
+      const quoteText = document.getElementById("quoteText");
+      const displayImage = document.getElementById("displayImage");
+
+      let currentBgClass = "";
+      let currentTextClass = "text-black";
+
+      bgColorSelect.addEventListener("change", function () {
+        if (currentBgClass) {
+          body.classList.remove(currentBgClass);
+        }
+
+        const newBgClass = this.value;
+        if (newBgClass) {
+          body.classList.add(newBgClass);
+          currentBgClass = newBgClass;
+        } else {
+          currentBgClass = "";
+        }
+      });
+
+      textColorSelect.addEventListener("change", function () {
+        if (currentTextClass) {
+          quoteText.classList.remove(currentTextClass);
+        }
+
+        const newTextClass = this.value;
+        if (newTextClass) {
+          quoteText.classList.add(newTextClass);
+          currentTextClass = newTextClass;
+        } else {
+          quoteText.classList.add("text-black");
+          currentTextClass = "text-black";
+        }
+      });
+
+      imageSelect.addEventListener("change", function () {
+        const imageUrl = this.value;
+        if (imageUrl) {
+          displayImage.src = imageUrl;
+          displayImage.classList.remove("hidden");
+          displayImage.style.opacity = "0";
+          setTimeout(() => {
+            displayImage.style.opacity = "1";
+          }, 10);
+        } else {
+          displayImage.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
