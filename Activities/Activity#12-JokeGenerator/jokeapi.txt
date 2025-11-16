@@ -1,0 +1,97 @@
+eto po ung api endpoint na ginawa ko
+
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+
+$jokes = [
+  [
+    "id" => 1,
+    "joke"=> "Anong isda ang mahilig magsulat? Eh di la-FISH! (Lapis)"
+  ],
+  [
+    "id" => 2,
+    "joke"=> "Anong puno ang hindi pwedeng akyatin? Eh di 'yung nakatumba!"
+  ],
+  [
+    "id" => 3,
+    "joke" => "Bangin ka ba? Nahuhulog kasi ako sa'yo nang 'di ko namamalayan."
+  ],
+  [
+    "id" => 4,
+    "joke" => "Bakit maswerte ang kalendaryo? Dahil marami siyang date."
+  ],
+  [
+    "id" => 5,
+    "joke" => "Ano ang makukuha mo sa baboy na magaling mag-karate? Eh 'di... PORK CHOP!"
+  ],
+  [
+    "id" => 6,
+    "joke" => "May tatlong lalake ang tumalon sa tubig, ilan ang nabasa ang buhok? Wala, kalbo silang lahat eh!"
+  ],
+  [
+    "id" => 7,
+    "joke" => "Anong tawag sa maliit na tsunami? Eh di tsuNANO!"
+  ],
+  [
+    "id" => 8,
+    "joke" => "Pustiso ka ba? Kasi I can't smile without you."
+  ],
+  [
+    "id" => 9,
+    "joke" => "Anong hayop ang pinakatanga? ISda! Kasi ang laki ng dagat, nagsisiksikan sila sa lata!"
+  ],
+  [
+    "id" => 10,
+    "joke" => "Knock, knock! Who's there? Honda. Honda who? Honda wings of love, up and above the clouds..."
+  ],
+  [
+    "id" => 11,
+    "joke" => "Bakit kailangang lagyan ng gulong ang rocking chair ni lola? Para makapag-rock and roll siya!"
+  ],
+  [
+    "id" => 12,
+    "joke" => "Ano'ng shoe ang masakit? Eh 'di... SHOE-ntok!"
+  ],
+  [
+    "id" => 13,
+    "joke" => "Ano'ng shoe ang mas masakit? Eh 'di... SHOE-gat!"
+  ],
+  [
+    "id" => 14,
+    "joke" => "Alam mo ba anong tawag sa isdang bumabaril? Eh 'di... BANGus!"
+  ],
+  [
+    "id" => 15,
+    "joke" => "Ano'ng isda ang mahilig mambola? Eh 'di... Fishball!"
+  ],
+  [
+    "id" => 16,
+    "joke" => "Ano'ng katabi ng USA? Eh 'di... USB"
+  ],
+  [
+    "id" => 17,
+    "joke" => "Bakit bawal umutot sa Apple store? Kasi... walang Windows."
+  ],
+  [
+    "id" => 18,
+    "joke" => "Sa'n nagtatrabaho ang mga isda? Eh di ofFISH! (office)"
+  ],
+  [
+    "id" => 19,
+    "joke" => "Ano namang tawag sa tropa mong pandak? Eh 'di... Li' 'Tol."
+  ],
+  [
+    "id" => 20,
+    "joke" => "Ano'ng tawag sa grupo ng mga aso? Eh 'di... ASO-ciation!"
+  ]
+];
+
+$response = [
+  "status" => "success",
+  "message" => "Jokes list fetched successfully",
+  "data" => $jokes
+];
+
+echo json_encode($response);
+?>
