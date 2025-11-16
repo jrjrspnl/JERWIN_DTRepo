@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-6 flex gap-4">
+        <select id="category" class="p-2 border rounded shadow bg-white">
+          <option value="">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Furniture">Furniture</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Home">Home</option>
+          <option value="Stationery">Stationery</option>
+          <option value="Apparel">Apparel</option>
+        </select>
+
+        <select id="priceSort" class="p-2 border rounded shadow bg-white">
+          <option value="">Sort by Price</option>
+          <option value="asc">Price: Low → High</option>
+          <option value="desc">Price: High → Low</option>
+        </select>
+      </div>
+
+      <div
+        id="productContainer"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+      ></div>
+    </div>
+
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "Wireless Mouse",
+          category: "Electronics",
+          price: 450,
+          stock: 30,
+        },
+        {
+          id: 2,
+          name: "Bluetooth Headphones",
+          category: "Electronics",
+          price: 1200,
+          stock: 15,
+        },
+        {
+          id: 3,
+          name: "Office Chair",
+          category: "Furniture",
+          price: 3500,
+          stock: 8,
+        },
+        {
+          id: 4,
+          name: "Water Bottle",
+          category: "Lifestyle",
+          price: 150,
+          stock: 100,
+        },
+        {
+          id: 5,
+          name: "Mechanical Keyboard",
+          category: "Electronics",
+          price: 2500,
+          stock: 12,
+        },
+        {
+          id: 6,
+          name: "LED Desk Lamp",
+          category: "Home",
+          price: 600,
+          stock: 25,
+        },
+        {
+          id: 7,
+          name: "Notebook",
+          category: "Stationery",
+          price: 45,
+          stock: 200,
+        },
+        {
+          id: 8,
+          name: "Running Shoes",
+          category: "Apparel",
+          price: 1800,
+          stock: 20,
+        },
+        {
+          id: 9,
+          name: "USB-C Charger",
+          category: "Electronics",
+          price: 550,
+          stock: 40,
+        },
+        {
+          id: 10,
+          name: "Backpack",
+          category: "Apparel",
+          price: 900,
+          stock: 18,
+        },
+      ];
+
+      const container = document.getElementById("productContainer");
+      const categoryDropdown = document.getElementById("category");
+      const priceDropdown = document.getElementById("priceSort");
+
+      function showProducts(list) {
+        container.innerHTML = "";
+
+        list.forEach((p) => {
+          container.innerHTML += `
+            <div class="bg-white p-4 rounded shadow">
+              <h2 class="text-lg font-bold">${p.name}</h2>
+              <p class="text-sm text-gray-600">Category: ${p.category}</p>
+              <p class="font-semibold mt-2">₱${p.price}</p>
+              <p class="text-sm text-gray-500">Stock: ${p.stock}</p>
+            </div>
+          `;
+        });
+      }
+
+      function updateProducts() {
+        let filtered = categoryDropdown.value
+          ? products.filter((p) => p.category === categoryDropdown.value)
+          : [...products];
+
+        const sortType = priceDropdown.value;
+        if (sortType === "asc") {
+          filtered.sort((a, b) => a.price - b.price);
+        } else if (sortType === "desc") {
+          filtered.sort((a, b) => b.price - a.price);
+        }
+
+        showProducts(filtered);
+      }
+
+      showProducts(products);
+
+      categoryDropdown.addEventListener("change", updateProducts);
+      priceDropdown.addEventListener("change", updateProducts);
+    </script>
+  </body>
+</html>
